@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from datetime import datetime
 
 app = Flask(__name__)
@@ -12,16 +12,24 @@ def hello_world():
 @app.route("/time_remaining")
 def calculate_time():
     date_format = "%Y-%m-%d %H:%M:%S"
-    target_time = request.args.get('target_time')
+
+    target_time = datetime.strptime(request.args.get('target_time'), date_format)
     print(target_time)
-    target_date = datetime.strptime(target_time, date_format).date()
     current_time = datetime.now()
-    time_difference = calculate_time_diff(current_time, target_date)
+    time_difference = calculate_time_diff(current_time, target_time)
     hours = time_difference.seconds // 3600
     minutes = (time_difference.seconds // 60) % 60
-    return "距离指定时间还有 " + hours + " 小时 " + minutes + " 分钟"
+    data = {
+        "hours": hours,
+        "minutes": minutes
+    }
+    return jsonify(data)
 
 
 def calculate_time_diff(start_time, target_time):
     time_difference = target_time - start_time
     return time_difference
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5001)
