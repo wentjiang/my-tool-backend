@@ -23,3 +23,14 @@ jobs:
 
       - name: Set working directory to repository root
         run: cd $GITHUB_WORKSPACE
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: wentjiang/my-tool-backend:latest
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
