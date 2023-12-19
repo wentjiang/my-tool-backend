@@ -3,4 +3,6 @@ set -eufo pipefail
 
 cd "$(dirname "$0")/.."
 
-docker build -t my-tool-backend .
+. scripts/config.sh
+
+docker build -t "${DOCKER_IMAGE_NAME}" .
