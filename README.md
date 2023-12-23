@@ -28,6 +28,11 @@ source ./venv/bin/activate
 pip install -r requirements.txt
 ```
 
+### Put the installed package into requirements.txt
+```shell script
+pip freeze > requirements.txt
+```
+
 ### build docker image
 
 ```
@@ -38,4 +43,10 @@ pip install -r requirements.txt
 
 ```
 docker run --rm -p 5001:5001 my-tool-backend
+```
+
+### local run
+
+```
+python application.py 
 ```
