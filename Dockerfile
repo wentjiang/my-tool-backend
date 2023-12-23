@@ -1,5 +1,5 @@
 # 使用基础镜像
-FROM python:3.10
+FROM python:3.10.13-slim-bullseye
 
 # 设置工作目录
 WORKDIR /app
@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5001
 
 # 启动应用
-CMD ["python", "application.py"]
+CMD ["gunicorn -w 1 -b 0.0.0.0:5001 application:app"]
