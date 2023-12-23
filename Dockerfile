@@ -1,5 +1,5 @@
 # 使用基础镜像
-FROM python:3.10
+FROM python:3.10.13-slim-bullseye
 
 # 设置工作目录
 WORKDIR /app
