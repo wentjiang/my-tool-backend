@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5001
 
 # 启动应用
-CMD ["gunicorn -w 1 -b 0.0.0.0:5001 application:app"]
+CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:5001", "application:app"]

@@ -42,7 +42,7 @@ pip freeze > requirements.txt
 ### start docker image
 
 ```
-docker run --rm -p 5001:5001 my-tool-backend
+docker run --rm -p 5001:5001 wentjiang/my-tool-backend
 ```
 
 ### local run
